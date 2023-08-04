@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Shopping List</title>
+  <style>
+    /* Your minimal CSS here */
+  </style>
+</head>
+<body>
+  <h1>My shopping list</h1>
+  <div>
+    <label for="item">Enter a new Item:</label>
+    <input type="text" id="item" />
+    <button id="addButton">Add Item:</button>
+  </div>
+  <ul id="shoppingList">
+    <!-- The list items will be added here -->
+  </ul>
+
+  <script>
+    // Step 1: Create variables to hold references to the list, input, and button elements
+    const shoppingList = document.getElementById('shoppingList');
+    const inputElement = document.getElementById('item');
+    const addButton = document.getElementById('addButton');
+
+    // Step 2: Create a function to run in response to the button being clicked
+    addButton.addEventListener('click', function () {
+      // Step 3: Store the current value of the input element in a variable
+      const newItemText = inputElement.value;
+
+      // Step 4: Empty the input element by setting its value to an empty string
+      inputElement.value = '';
+
+      // Step 5: Create new elements - list item (<li>), <span>, and <button>
+      const listItem = document.createElement('li');
+      const listItemText = document.createElement('span');
+      const deleteButton = document.createElement('button');
+
+      // Step 6: Append the span and the button as children of the list item
+      listItem.appendChild(listItemText);
+      //some other changes
+      listItem.appendChild(deleteButton);
+
+      // Step 7: Set the text content of the span and the button
+      listItemText.textContent = newItemText;
+      deleteButton.textContent = 'Delete';
+
+      // Step 8: Append the list item as a child of the list
+      shoppingList.appendChild(listItem);
+
+      // Step 9: Attach an event handler to the delete button to delete the entire list item
+      deleteButton.addEventListener('click', function () {
+        shoppingList.removeChild(listItem);
+      });
+
+      // Step 10: Use the focus() method to focus the input element
+      inputElement.focus();
+    });
+  </script>
+</body>
+</html>
